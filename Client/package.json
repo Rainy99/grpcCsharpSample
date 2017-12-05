@@ -1,0 +1,14 @@
+{
+  "name": "grpc_client_sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "devzhou",
+  "license": "MIT",
+  "dependencies": {
+    "grpc": "^1.7.2"
+  }
+}

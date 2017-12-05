@@ -1,0 +1,16 @@
+﻿syntax = "proto3";
+
+package sample;
+
+service UserService{
+	rpc GetUser(NotFound) returns (.sample.User);
+}
+
+message	User{
+	int32 Id = 1;
+	string Name =2;
+}
+
+message	NotFound{
+}
+	
