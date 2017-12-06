@@ -5,28 +5,30 @@ using Sample;
 
 namespace Server
 {
-    class Program
+  internal class Program
+  {
+    private static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            var server = new Grpc.Core.Server
-            {
-                Services = { UserService.BindService(new SampleImpl()) },
-                Ports = { new ServerPort("localhost", 8080, ServerCredentials.Insecure) }
-            };
+      const int PORT = 8080;
+      var port = args.Length == 0 ? PORT : int.Parse(args[0]);
 
-            server.Start();
-            Console.WriteLine("server running on localhost:8080");
-            server.ShutdownTask.Wait();
+      var server = new Grpc.Core.Server
+      {
+        Services = {UserService.BindService(new SampleImpl())},
+        Ports = {new ServerPort("localhost", port, ServerCredentials.Insecure)}
+      };
 
+      server.Start();
+      Console.WriteLine($"server running on localhost:{port}");
+      server.ShutdownTask.Wait();
     }
   }
 
-    class SampleImpl : UserService.UserServiceBase
+  internal class SampleImpl : UserService.UserServiceBase
+  {
+    public override Task<User> GetUser(NotFound request, ServerCallContext context)
     {
-        public override Task<User> GetUser(NotFound request, ServerCallContext context)
-        {
-            return Task.FromResult(new User { Id = 1, Name = "陌上花开" });
-        }
+      return Task.FromResult(new User {Id = 1, Name = "陌上花开"});
     }
+  }
 }
