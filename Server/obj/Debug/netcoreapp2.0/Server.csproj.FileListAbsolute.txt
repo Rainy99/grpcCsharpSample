@@ -1,1 +1,0 @@
-c:\users\zhouyu\source\repos\Zhouyu.Grpc.Sample\Server\bin\Debug\netcoreapp2.0\Server.dll
